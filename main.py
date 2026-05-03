@@ -101,9 +101,11 @@ async def main():
     #TODO set up run configuration. list of positions vs list of models, tally results and pretty print
     #print(await testPosition(client, board.fen(), "deepseek/deepseek-v4-flash"))
     #print(f'model (white) wins: {await testPosition(client, "8/8/8/8/3k4/8/3K4/R7 w - - 0 1", "google/gemini-3-flash-preview")}')
-    #print(f'model (white) wins: {await testPosition(client, "8/8/8/8/3k4/8/3K4/R7 w - - 0 1", "google/gemini-3.1-pro-preview")}')
+    print(f'model (white) wins: {await testPosition(client, "8/8/8/8/3k4/8/3K4/R7 w - - 0 1", "google/gemini-3.1-pro-preview")}')
     #print(f'model (white) wins: {await testPosition(client, "8/8/8/8/3k4/8/3K4/R7 w - - 0 1", "anthropic/claude-sonnet-4.6")}')
-    print(f'model (white) wins: {await testPosition(client, "8/8/8/8/3k4/8/3K4/R7 w - - 0 1", "anthropic/claude-opus-4.6")}')
+    #print(f'model (white) wins: {await testPosition(client, "8/8/8/8/3k4/8/3K4/R7 w - - 0 1", "anthropic/claude-opus-4.6")}')
+    #modelstring human/me: 12 seconds to win https://lichess.org/0RgWuO4p
+
     """
     #cursed bullshit that kind of works. thank god for libraries
     proc = await asyncio.create_subprocess_shell(
