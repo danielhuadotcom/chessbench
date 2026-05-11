@@ -9,6 +9,7 @@ Python 3.13 via uv
 
 Requires locally-installed stockfish
  (Somewhat increases possibility of 50-move-rule draws, by being as annnoying of an opponent as possible)
+
 Instructions below for installing this via apt
 
 Run the benchmark (results saved as .jsonl to run\_logs/)
@@ -21,5 +22,6 @@ cd chessbench
 cp .env.example .env
 vim .env #fill in your OpenRouter API key
 uv sync
-uv run main.py
+uv run main.py --verbose #default: 1 sample
+uv run visualize.py #generates HTML report from last run log
 ```
