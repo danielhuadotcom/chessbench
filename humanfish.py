@@ -6,10 +6,10 @@ import chess.engine
 
 async def main():
     # 2 knights + move odds, human is able to win with ascii board
-    # fen = "r1bqkb1r/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    fen = "r1bqkb1r/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
     # knight + move odds, human struggles
-    fen = "rnbqkb1r/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    #fen = "rnbqkb1r/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
     # based on these two data points i estimate Limit(time=0.1) fish is about 2700 Elo
     # https://en.wikipedia.org/wiki/Handicap_(chess)#Rating_equivalent
@@ -28,7 +28,7 @@ async def main():
         print()
         if board.outcome(claim_draw=True):
             continue
-        res = await engine.play(board, chess.engine.Limit(time=0.1))
+        res = await engine.play(board, chess.engine.Limit(time=4))
         board.push_uci(res.move.uci())
         print(f"Fish plays: {res.move.uci()}")
 

@@ -64,7 +64,9 @@ def format_messages_html(messages):
     lines = []
     for m in messages:
         role = html.escape(m["role"])
-        content = html.escape(m["content"]).replace("\n", "<br>")
+        content = ""
+        if m["content"]:
+            content = html.escape(m["content"]).replace("\n", "<br>")
         lines.append(f"<b>{role}:</b> {content}")
     return "<br>".join(lines)
 
@@ -85,7 +87,7 @@ def build_html(grouped, positions, models, samples, filename):
             sample_details = []
             for i, r in enumerate(runs, 1):
                 outcome = "Win" if r["success"] else "Failure"
-                summary = f"Sample {i}: {outcome} ({r['illegals']} illegal, {count_moves(r)} moves, ${r['cost']:.4f})"
+                summary = f"Sample {i}: {outcome} ({count_moves(r)} moves, {r['illegals']} illegal, ${r['cost']:.4f})"
                 sample_details.append(
                     f'<details><summary>{html.escape(summary)}</summary>'
                     f'<div class="messages">{format_messages_html(r["messages"])}</div>'
@@ -95,7 +97,7 @@ def build_html(grouped, positions, models, samples, filename):
             cell = (
                 f'<div class="cell">'
                 f"<div class=\"winrate\">{pct}% winrate</div>"
-                f"<div class=\"averages\">Averages: {avg_ill:.1f} illegal moves, {avg_moves:.0f} total moves, ${avg_cost:.4f} cost</div>"
+                f"<div class=\"averages\">Averages: {avg_moves:.1f} total moves, {avg_ill:.1f} illegal moves, ${avg_cost:.4f} cost</div>"
                 f'<div class="samples">{"".join(sample_details)}</div>'
                 f"</div>"
             )
